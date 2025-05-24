@@ -10,3 +10,5 @@ To install all required packages, run the following command:
 
 ```bash
 pip install -r requirements.txt
+
+## Training
