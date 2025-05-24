@@ -2,6 +2,8 @@
 
 The official code repo for "LogiCoL: Logically-Informed Contrastive Learning for Set-based Dense Retrieval".
 
+Our data are available at [data](https://drive.google.com/drive/folders/1W_8PrA7CibJ4MuI41H4xnS5KAXfQ0Z9D?usp=drive_link)
+
 ## Installation
 
 This project is implemented using `pytorch_lightning`. Please ensure you have Python 3.8 or higher installed.
