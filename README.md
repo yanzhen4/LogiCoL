@@ -10,5 +10,17 @@ To install all required packages, run the following command:
 
 ```bash
 pip install -r requirements.txt
+```
 
 ## Training
+
+To train a dense retriever using **LogiCoL**, run the following command:
+```bash
+./script/train_quest_slurm.sh
+```
+
+### Inference
+To inference using the trained retriever, run the following command:
+```bash
+./script/evaluate_quest.sh
+```
