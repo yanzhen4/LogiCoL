@@ -2,7 +2,7 @@
 
 The official code repo for "LogiCoL: Logically-Informed Contrastive Learning for Set-based Dense Retrieval".
 
-Our data are available at [this link](https://drive.google.com/drive/folders/1W_8PrA7CibJ4MuI41H4xnS5KAXfQ0Z9D?usp=drive_link)
+Our data are available at [this link](https://drive.google.com/drive/folders/1W_8PrA7CibJ4MuI41H4xnS5KAXfQ0Z9D?usp=drive_link).
 
 ## Installation
 
