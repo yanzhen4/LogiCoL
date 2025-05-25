@@ -23,7 +23,7 @@ To train a dense retriever using **LogiCoL**, run the following command:
 
 To train a dense retriever using the basic supervised constrastive learning (the **SupCon** baseline), run the following command:
 ```bash
-./scripttrain_quest_SupCon.sh
+./script/train_quest_SupCon.sh
 ```
 
 ### Inference
