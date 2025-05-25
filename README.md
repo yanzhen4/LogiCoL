@@ -31,3 +31,8 @@ To inference using the trained retriever, run the following command:
 ```bash
 ./script/evaluate_quest.sh
 ```
+
+To inference using **BM25**, run the following command:
+```bash
+./script/evaluate_bm25.sh
+```
