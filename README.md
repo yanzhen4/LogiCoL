@@ -18,7 +18,12 @@ pip install -r requirements.txt
 
 To train a dense retriever using **LogiCoL**, run the following command:
 ```bash
-./script/train_quest_slurm.sh
+./script/train_quest_LogiCoL.sh
+```
+
+To train a dense retriever using the basic supervised constrastive learning (the **SupCon** baseline), run the following command:
+```bash
+./scripttrain_quest_SupCon.sh
 ```
 
 ### Inference
