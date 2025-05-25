@@ -1,20 +1,23 @@
+# Change the following paths to your own paths
 cd /shared/yanzhen4/LogiCoL
 export HF_HOME=/shared/yanzhen4/models_cache
 export HUGGINGFACE_HUB_CACHE=/shared/yanzhen4/models_cache
 export PYTHONPATH=$(pwd):PYTHONPATH
 export NCCL_P2P_DISABLE=1
 
-experiment_name="quest_setIR"
+experiment_name="quest_LogiCoL"
 exclusion_loss_weight=0.1
 exclusion_loss_margin=0.1
 subset_loss_weight=0.2
 subset_loss_margin=0.2
 
+model_name="intfloat/e5-base-v2" # Also try GTR, GTE, and Contriever! 
+
 CUDA_VISIBLE_DEVICES=4,5,6,7 python3 main.py \
     --train \
     --validate \
     --experiment_name $experiment_name \
-    --model_name  intfloat/e5-base-v2 \
+    --model_name  $model_name \
     --train_queries /shared/yanzhen4/LogiCoL/data/quest_train_withVarients.jsonl \
     --val_queries /shared/yanzhen4/LogiCoL/data/quest_val_withVarients.jsonl \
     --test_queries /shared/yanzhen4/LogiCoL/data/quest_test_withVarients.jsonl \
