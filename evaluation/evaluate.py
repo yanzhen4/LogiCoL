@@ -330,18 +330,6 @@ def main(args):
                     results.add_entry(metric_name=f"f1@{k}", example_type=query_type, score=f1)
                     results.add_entry(metric_name=f"mrecall@{k}", example_type=query_type, score=mrecall)
                 
-                # # Store the position of the gold docs in the rank_doc_ids
-                # gold_doc_positions = [rank_doc_ids.index(g) for g in gold_docs if g in rank_doc_ids]
-                # mean_gold_doc_position = int(np.mean(gold_doc_positions)) if gold_doc_positions else None
-                # with open(result_output_path, 'a') as f:
-                #     f.write(json.dumps({
-                #         'query': all_queries[q_idx]['nl_query'],
-                #         'gold_docs': gold_docs,
-                #         'gold_doc_positions': gold_doc_positions,
-                #         'mean_gold_doc_position': mean_gold_doc_position,
-                #     }))
-                #     f.write('\n')
-
             q_idx_offset += query_chunk.size(0)
     
     logger.info("Computing evaluation metrics...")

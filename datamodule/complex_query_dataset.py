@@ -90,11 +90,6 @@ class ComplexQueryRandomDataset(TorchDataset):
         else:
             pos_docs = []
 
-        with open(f'{self.cache_dir}/random_queries_train_data_ComplexQueryDataset.jsonl', 'a') as fout:
-            output_dict = {'nl_query': query['nl_query'], 'documents': pos_docs[0]['title']}
-            json.dump(output_dict, fout)
-            fout.write('\n')
-
         return {
             "query": query, 
             "documents": pos_docs
@@ -296,9 +291,6 @@ class ComplexQueryMixDataset(TorchDataset):
             if len(max_atoms) > 1:
                 group_sizes_total += len(self.query_group[max_atoms]["queries"])
                 group_count += 1
-       # print(group_sizes_total, group_count)
-
-        # print("Average query group size: ", average_query_group_size)
 
         # Get all the single queries
         random_groups_keys = []
@@ -348,39 +340,6 @@ class ComplexQueryMixDataset(TorchDataset):
 
         # Random shuffle the query_group_keys
         random.shuffle(self.query_group_keys)
-
-        # NOTE: This code is for debugging purposes
-        if self.write_result:
-            total_num_elements = 0
-            added_queries = set()
-            num_groups = 0
-            complex_queries_groups = []
-            single_queries_groups = []
-            with open(f'/shared/yanzhen4/Set-based-Retrieval/output_final_0425/trained_models/group_queries_train_augmented_full_{self.alpha}.txt', 'w') as fout:
-                fout.write(f"Number of groups: {len(self.query_group)}\n\n")
-
-                for idx, max_atoms in enumerate(self.query_group_keys):
-                    if len(self.query_group[max_atoms]['subset_relation']) == 0:
-                        single_queries_groups.append(max_atoms)
-                    else:
-                        complex_queries_groups.append(max_atoms)
-                    fout.write(f"{idx}: {max_atoms}\n")
-
-                    for query_idx, query in enumerate(self.query_group[max_atoms]["queries"]):
-                        fout.write(f"({query_idx})\t{query['nl_query']}\t{query['queries']}\t{query['operators']}\n")
-                        # if query['nl_query'] in added_queries:
-                        #     print("Duplicate query: ", query['nl_query'])
-                        added_queries.add(query['nl_query'])
-
-                    fout.write(f"{self.query_group[max_atoms]['subset_relation']}\n")
-                    fout.write("\n")
-
-                    total_num_elements += len(self.query_group[max_atoms]["queries"])
-
-                fout.write(f"Number of random queries groups: {len(single_queries_groups)}\n")
-                fout.write(f"Number of group queries groups: {len(complex_queries_groups)}\n")
-                fout.write(f"Total number of elements: {total_num_elements}\n")
-                fout.write(f"Average group size: {total_num_elements / (len(complex_queries_groups) + len(single_queries_groups))}\n")
         
     def __len__(self):
         return len(self.query_group_keys)

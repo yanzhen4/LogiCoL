@@ -188,19 +188,6 @@ class LitEncoder(pl.LightningModule):
 
             neg_mask = neg_mask * allowed_neg_mask
 
-            #only print when cuda device is 0
-            # if self.device.index == 0:
-                
-            #     for idx, (pos_mask_row, prev_neg_mask_row, allowed_neg_mask_row, neg_mask_row) in enumerate(zip(all_output['pos_mask'], prev_neg_mask, allowed_neg_mask, neg_mask)):
-            #         print(f"idx: {idx}")
-            #         print(f"pos_mask_row: {pos_mask_row}")
-            #         print(f"prev_neg_mask_row: {prev_neg_mask_row}")
-            #         print(f"allowed_neg_mask_row: {allowed_neg_mask_row}")
-            #         print(f"neg_mask_row: {neg_mask_row}")
-            #         print()
-
-        # print("Number of documents and queries in the batch: ", len(all_output['document_indices']), len(all_output['query_indices']))
-        
         contrastive_loss = self.loss_fn(
             all_output['encoded'], 
             all_output["pos_mask"], 

@@ -43,12 +43,8 @@ def main(args):
         retriever.save(retriever_path)
 
     predictions, subquery2doc_sim = make_predictions(documents, nl_queries, retriever)
-    
-    # save_dict(subquery2doc_sim, f'{output_folder}/{test_file_name}_nl_query2doc_sim.jsonl')
 
     reordered_all_ranks = torch.stack([compute_doc_ranks_from_predictions(row) for row in predictions])
-
-    # save_matrix(reordered_all_ranks, nl_queries, f'{output_folder}/{test_file_name}_nl_query2doc_rank.jsonl')
 
     results = EvalRecord(round_results_to_digits=4)
 

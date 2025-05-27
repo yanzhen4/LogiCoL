@@ -92,13 +92,6 @@ def supercon_loss(doc_embeds, pos_mask, neg_mask, temperature = 0.1):
 
     valid_mean_log_prob_pos = -mean_log_prob_pos
 
-    #To handle dpr loss case
-    # Create a mask to filter out rows where there is no positive pair
-    # valid_rows_mask = pos_mask.sum(dim=1) > 0
-    # valid_mean_log_prob_pos = mean_log_prob_pos[valid_rows_mask]
-
-    # Apply the mask to mean_log_prob_pos
-
     low_pass_filter = valid_mean_log_prob_pos > 0
     valid_mean_log_prob_pos = valid_mean_log_prob_pos[low_pass_filter]
 
@@ -219,8 +212,6 @@ def dpr_loss(q_embeds, doc_embeds, positive_idx_per_question):
     )
 
     return loss
-
-#TODO: Write a function that utilize the set constraints 
 
 LOSS_CLASSES = {
     "supcon": supercon_loss,
