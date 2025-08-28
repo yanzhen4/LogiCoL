@@ -13,31 +13,21 @@ from model.encoder import LitEncoder
 
 
 def main(args):
-
-    print("exclusion_loss_weight: ", args.exclusion_loss_weight)
-    print("exclusion_loss_margin: ", args.exclusion_loss_margin)
-    print("subset_loss_weight: ", args.subset_loss_weight)
-    print("subset_loss_margin: ", args.subset_loss_margin)
     
-    # weirdness with HuggingFace tokenizer when processing things in parallel
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
     torch.multiprocessing.set_sharing_strategy('file_system')
 
-    # Set seed for each worker
     pl.seed_everything(args.random_seed, workers=True)
 
-    # create experiment_dir
     experiment_id = make_experiment_id(args)
 
     experiment_dir = os.path.join(args.output_dir, experiment_id)
     if not os.path.exists(experiment_dir):
         os.makedirs(experiment_dir)
 
-    # create cache directory to save tokenized dataset, queries, etc
     if not os.path.exists(args.cache_dir):
         os.makedirs(args.cache_dir)
 
-    # Load model and data module for training and evaluation
     model = LitEncoder(args)
     
     dm = ComplexQueryDataModule(
