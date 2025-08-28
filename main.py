@@ -71,14 +71,12 @@ def main(args):
 
     lr_monitor = LearningRateMonitor(logging_interval="step")
 
-    # compute validation if needed, otherwise just skip it and save
-    # every `period` checkpoints
     limit_val_batches = 0.0
     checkpoint_callback = ModelCheckpoint(
     dirpath=experiment_dir,
     save_on_train_epoch_end=True,
     save_top_k=-1,
-    every_n_epochs=5,  # Save every 2 epochs
+    every_n_epochs=5,
     save_weights_only=False,
     filename="{epoch}-{step}"
 )
