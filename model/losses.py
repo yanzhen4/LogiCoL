@@ -216,7 +216,6 @@ def dpr_loss(q_embeds, doc_embeds, positive_idx_per_question):
 LOSS_CLASSES = {
     "supcon": supercon_loss,
     "dpr": dpr_loss,
-    #"subset": subset_loss,
     "subset_asymmetric": subset_loss_asymmetric,
     "exclusion": exclusion_loss
 }
