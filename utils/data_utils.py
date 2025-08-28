@@ -265,20 +265,13 @@ def random_sample_to_features_group(
         exclusion_indices_list.extend(exclusion_indices)
 
         num_queries_curr += len(queries)
-
-    # Make sure if the added documents are positive documents of other queries, then their indices should be added in all_pos_indices. This code only works when there is one positive document per query
-
-    #print("Number of queries and documents", len(query_indices), len(document_indices))
-
+        
     if num_pos_docs == 1 and flip_false_negative_full:
         for idx1, (query_idx, doc_idx) in enumerate(zip(query_indices, document_indices)):
             pos_doc = query_idx2pos_document[query_idx]
             for query_idx2 in query_idx2documents:
                 if pos_doc in query_idx2documents[query_idx2] and (query_idx2, doc_idx) not in all_pos_indices:
                     all_pos_indices.append((query_idx2, doc_idx))
-
-        #print(f"Number of flip false negatives: {flip_false_negative_count}")
-        #print()
 
     subset_relations = subset_indices_list
     exclusion_relations = exclusion_indices_list
@@ -296,11 +289,6 @@ def random_sample_to_features_group(
     if square_matrix_symmetric:
         pos_mask = make_square_matrix_symmetric(pos_mask)
 
-    # print("all_non_negative_indices: ", all_non_negative_indices)
-
-    # all_non_negative_indices stores the indices of any paris queries and documents in a single group, which can not be used as negative samples
-    # Original version used before 3.10 experiment
-    # print("all_non_negative_indices: ", all_non_negative_indices)
     unallowed_neg_mask = sparse_indices_to_dense_matrix(
         indices=all_non_negative_indices,
         shape=(len(all_input_ids), len(all_input_ids)),
@@ -385,8 +373,6 @@ def load_jsonl_as_hf_dataset_combine(file: str) -> torch.utils.data.Dataset:
         
     query_df = pd.DataFrame(subqueries_data)
     query_ds = HFDataset.from_pandas(query_df)
-
-    #print("Number of unique subqueries: ", len(unique_subqueries))
 
     return query_ds, all_queries_reorg
 
