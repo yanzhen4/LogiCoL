@@ -1,6 +1,6 @@
 # LogiCoL
 
-This repository contains the datasets and source code used in our EMNLP 2025 Accepted paper "[LogiCoL](https://www.arxiv.org/pdf/2505.19588): Logically-Informed Contrastive Learning for Set-based Dense Retrieval".
+This repository contains the datasets and source code used in our EMNLP 2025 accepted paper "[LogiCoL](https://www.arxiv.org/pdf/2505.19588): Logically-Informed Contrastive Learning for Set-based Dense Retrieval".
 
 Our data are available at [this link](https://drive.google.com/drive/folders/1W_8PrA7CibJ4MuI41H4xnS5KAXfQ0Z9D?usp=drive_link).
 
