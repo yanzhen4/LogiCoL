@@ -1,4 +1,3 @@
-]# Change the following paths to your own paths
 cd /shared/yanzhen4/LogiCoL
 export HF_HOME=/shared/yanzhen4/models_cache
 export HUGGINGFACE_HUB_CACHE=/shared/yanzhen4/models_cache
@@ -7,6 +6,11 @@ export NCCL_P2P_DISABLE=1
 
 experiment_name="quest_LogiCol"
 model_name="intfloat/e5-base-v2" # Also try GTR, GTE, and Contriever! 
+
+exclusion_loss_weight=0.1
+exclusion_loss_margin=0.1
+subset_loss_weight=0.2
+subset_loss_margin=0.2
 
 CUDA_VISIBLE_DEVICES=4,5,6,7 python3 main.py \
     --train \
